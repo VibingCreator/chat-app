@@ -1,0 +1,13 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+:root {
+    --dominant: #08020D;
+    --secondary: #FFFFFF;
+}
+
+body {
+    color: var(--secondary);
+    background-color: var(--dominant);
+}
