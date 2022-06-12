@@ -82,11 +82,13 @@ body {
 }
 
 .input__online-count {
+    padding: 0 16px;
     font-weight: 700;
     color: var(--variant);
 }
 
 .input__disclaimer {
+    padding: 0 16px 16px 16px;
     color: var(--tertiary);
 }
 
