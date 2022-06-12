@@ -65,14 +65,20 @@ body {
 }
 
 .message__icon-emergency {
-    cursor: pointer;
+    border: 0;
+    outline: 0;
     color: var(--variant);
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .message__icon-send {
     padding: 0 12px 0 0;
-    cursor: pointer;
+    border: 0;
+    outline: 0;
     color: var(--variant);
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .input__online-count {

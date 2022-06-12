@@ -5,7 +5,8 @@
   "description": "basic chat implementation",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ."
+    "start": "node .",
+    "nodemon": "nodemon ."
   },
   "keywords": [
     "chat",
