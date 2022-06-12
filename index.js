@@ -13,7 +13,7 @@ app.use("/", express.static("public"));
 
 io.on("connection", (socket) => {
     console.log("connection established");
-
+    
     socket.on("disconnect", (reason) => {
         console.log(`connection closed (${reason})`);
     })

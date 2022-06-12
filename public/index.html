@@ -5,11 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>document</title>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,700,1,0">
     <!-- styles -->
     <link rel="stylesheet" href="./styles/index.css">
 </head>
-<body>
-    hello world
+<body>    
+    <div class="chat">
+        <div class="chat__output">
+            <div class="output__notification">Someone joined the party!</div>
+            <div class="output__recipient">
+                <div class="recipient__sender">Someone</div>
+                <div class="recipient__data">
+                    <div class="data__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae asperiores veritatis sequi fugit magni suscipit! Amet impedit, molestias in vero dolorum est? Incidunt temporibus, maxime beatae ipsum minima eligendi fugiat.</div>
+                    <div class="data__timestamp">8:30&nbsp;AM</div>
+                </div>
+            </div>
+            <div class="output__sender">
+                <div class="sender__data">
+                    <div class="data__content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam doloremque quaerat illo sint sed officiis beatae reiciendis eius esse nam, consequatur nesciunt velit numquam earum ea sit iste non cupiditate.</div>
+                    <div class="data__timestamp">8:30&nbsp;AM</div>
+                </div>
+            </div>
+        </div>
+        <div class="chat__input">
+            <div class="input__activity">Someone is typing...</div>
+            <div class="input__message">
+                <input class="message__data" type="text" placeholder="Send a message..." />
+                <div class="message__icon-emergency material-symbols-sharp ">e911_emergency</div>
+                <div class="message__icon-send material-symbols-sharp ">send</div>
+            </div>
+            <div class="input__online-count">Online: 0</div>
+            <div class="input__disclaimer">This chat application was made to showcase real-time communication. Buffer is capable of holding up to 100 messages, excluding notifications. Please consider keeping it clean and friendly. Use the emergency button to clear the chat if necessary.</div>
+        </div>
+    </div>
 
     <!-- scripts -->
     <script src="./socket.io/socket.io.js"></script>

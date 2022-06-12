@@ -3,11 +3,179 @@
 }
 
 :root {
-    --dominant: #08020D;
-    --secondary: #FFFFFF;
+    --dominant: #000000;
+    --secondary: #101010;
+    --tertiary: #F2ECFF;
+    --variant: #007D5C;
 }
 
 body {
+    margin: 0;
+    font-family: "Nunito";
+    font-weight: 300;
     color: var(--secondary);
     background-color: var(--dominant);
+}
+
+.chat {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    background-color: var(--dominant);
+}
+
+/* ----------------------- */
+
+.chat__input {
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+    background-color: var(--dominant);
+}
+
+/* ----------------------- */
+
+.input__activity {
+    visibility: hidden;
+    color: var(--tertiary);
+}
+
+.input__message {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+    background-color: var(--secondary);
+}
+
+.message__data {
+    width: 100%;
+    padding: 16px 0 16px 12px;
+    font-family: "Nunito";
+    font-weight: 300;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    color: var(--tertiary);
+    background-color: var(--secondary);
+}
+
+.message__data::placeholder {
+    color: var(--tertiary);
+}
+
+.message__icon-emergency {
+    cursor: pointer;
+    color: var(--variant);
+}
+
+.message__icon-send {
+    padding: 0 12px 0 0;
+    cursor: pointer;
+    color: var(--variant);
+}
+
+.input__online-count {
+    font-weight: 700;
+    color: var(--variant);
+}
+
+.input__disclaimer {
+    color: var(--tertiary);
+}
+
+/* ----------------------- */
+
+.chat__output {
+    padding: 16px;
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: 12px;
+    overflow-y: auto;
+}
+
+/* ----------------------- */
+
+.output__recipient {
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: 8px;
+}
+
+.recipient__sender {
+    color: var(--tertiary);
+}
+
+.recipient__data {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-auto-rows: min-content;
+    align-items: center;
+    gap: 12px;
+}
+
+.recipient__data .data__content {
+    padding: 12px;
+    color: var(--tertiary);
+    background-color: var(--variant);
+}
+
+.recipient__data .data__timestamp {
+    font-size: 0.85rem;
+    color: var(--tertiary);
+    visibility: hidden;
+}
+
+.recipient__data:hover .data__timestamp {
+    visibility: visible;
+}
+
+.output__recipient .recipient__data:last-child .data__timestamp {
+    visibility: visible;
+}
+
+/* ----------------------- */
+
+.output__sender {
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: 8px;
+}
+
+.sender__data {
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+}
+
+.sender__data .data__content {
+    padding: 12px;
+    order: 2;
+    color: var(--tertiary);
+    background-color: var(--secondary);
+}
+
+.sender__data .data__timestamp {
+    order: 1;
+    text-align: right;
+    font-size: 0.85rem;
+    color: var(--tertiary);
+    visibility: hidden;
+}
+
+.sender__data:hover .data__timestamp {
+    visibility: visible;
+}
+
+.sender__data:last-child .data__timestamp {
+    visibility: visible;
+}
+
+/* ----------------------- */
+
+.output__notification {
+    text-align: center;
+    color: var(--tertiary);
 }
