@@ -40,6 +40,10 @@ body {
     color: var(--tertiary);
 }
 
+.input__activity--visible {
+    visibility: visible;
+}
+
 .input__message {
     display: grid;
     grid-template-columns: 1fr auto auto;
@@ -123,6 +127,7 @@ body {
 }
 
 .recipient__data .data__content {
+    word-wrap: break-word;
     padding: 12px;
     color: var(--tertiary);
     background-color: var(--variant);
@@ -159,6 +164,7 @@ body {
 }
 
 .sender__data .data__content {
+    word-wrap: break-word;
     padding: 12px;
     order: 2;
     color: var(--tertiary);

@@ -1,4 +1,5 @@
 const chatOutput = document.querySelector(".chat__output");
+const chatInputActivity = document.querySelector(".input__activity");
 const chatInputForm = document.querySelector(".input__message");
 const chatInputData = document.querySelector(".message__data");
 const chatInputIconEmergency = document.querySelector(".message__icon-emergency");
@@ -124,6 +125,18 @@ chatInputForm.addEventListener("submit", (event) => {
     chatInputForm.reset();
 });
 
+let chatTypingTimeout;
+
+chatInputData.addEventListener("input", (event) => {
+    clearTimeout(chatTypingTimeout);
+
+    socket.emit("chatStartTyping", socket.id);
+    
+    chatTypingTimeout = setTimeout(() => {
+        socket.emit("chatStopTyping", socket.id);
+    }, 1000);
+});
+
 chatInputIconEmergency.addEventListener("click", (event) => {
     socket.emit("chatEmergency", {
         type: "notification",
@@ -169,4 +182,30 @@ socket.on("chatBuffer", (data) => {
 socket.on("chatEmergency", (data) => {
     chatOutput.replaceChildren();
     createNotificationMessage(data.sender, data.data);
+});
+
+socket.on("chatStartTyping", (data) => {
+    data = data.filter((element) => element !== socket.id);
+
+    chatInputActivity.classList.add("input__activity--visible");
+
+    if (data.length === 1) {
+        chatInputActivity.textContent = `${data} is typing...`;
+    } else if (data.length === 2) {
+        chatInputActivity.textContent = `${data} are typing...`;
+    } else if (data.length >= 3) {
+        chatInputActivity.textContent = "Multiple people are typing...";
+    }
+});
+
+socket.on("chatStopTyping", (data) => {
+    data = data.filter((element) => element !== socket.id);
+
+    if (data.length === 0) {
+        chatInputActivity.classList.remove("input__activity--visible");
+    } else if (data.length === 1) {
+        chatInputActivity.textContent = `${data} is typing...`;
+    } else if (data.length === 2) {
+        chatInputActivity.textContent = `${data} are typing...`;
+    }
 });

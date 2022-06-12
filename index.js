@@ -12,6 +12,7 @@ app.use("/", express.static("public"));
 
 let chatOnlineCount = 0;
 let chatBuffer = [];
+let chatTyping = new Set();
 
 io.on("connection", (socket) => {
     console.log("connection established");
@@ -40,6 +41,9 @@ io.on("connection", (socket) => {
         data.timestamp = new Date();
         socket.broadcast.emit("chatMessage", data);
 
+        chatTyping.delete(data.sender);
+        socket.broadcast.emit("chatStopTyping", Array.from(chatTyping));
+        
         if (chatBuffer.length >= 100) {
             chatBuffer.shift();
         }
@@ -51,6 +55,16 @@ io.on("connection", (socket) => {
         chatBuffer = [];
         chatBuffer.push(data);
         socket.broadcast.emit("chatEmergency", data);
+    });
+
+    socket.on("chatStartTyping", (data) => {
+        chatTyping.add(data);
+        socket.broadcast.emit("chatStartTyping", Array.from(chatTyping));
+    });
+
+    socket.on("chatStopTyping", (data) => {
+        chatTyping.delete(data);        
+        socket.broadcast.emit("chatStopTyping", Array.from(chatTyping));
     });
 
     socket.on("disconnect", (reason) => {
@@ -71,6 +85,9 @@ io.on("connection", (socket) => {
             sender: socket.id,
             data: "left the party!"
         });
+
+        chatTyping.delete(socket.id);
+        socket.broadcast.emit("chatStopTyping", Array.from(chatTyping));
     })
 });
 
