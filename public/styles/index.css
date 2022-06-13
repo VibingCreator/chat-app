@@ -10,6 +10,9 @@
 }
 
 body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     margin: 0;
     font-family: "Nunito";
     font-weight: 300;
@@ -18,7 +21,7 @@ body {
 }
 
 .chat {
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-rows: 1fr auto;
     background-color: var(--dominant);
@@ -86,14 +89,25 @@ body {
 }
 
 .input__online-count {
-    padding: 0 16px;
+    padding: 0 16px 16px 16px;
     font-weight: 700;
     color: var(--variant);
 }
 
 .input__disclaimer {
-    padding: 0 16px 16px 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 16px;
     color: var(--tertiary);
+    background-color: var(--variant);
+}
+
+.disclaimer__icon-dismiss {
+    border: none;
+    outline: none;
+    color: var(--tertiary);
+    background-color: transparent;
+    cursor: pointer;
 }
 
 /* ----------------------- */

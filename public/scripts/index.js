@@ -5,6 +5,8 @@ const chatInputData = document.querySelector(".message__data");
 const chatInputIconEmergency = document.querySelector(".message__icon-emergency");
 const chatInputIconSend = document.querySelector(".message__icon-send");
 const chatOnlineCount = document.querySelector(".input__online-count");
+const chatInputDisclaimer = document.querySelector(".input__disclaimer");
+const chatInputDisclaimerIconDismiss = document.querySelector(".disclaimer__icon-dismiss");
 
 const socket = io();
 
@@ -106,6 +108,10 @@ const createRecipientMessage = (data) => {
     chatOutput.scrollTop = chatOutput.scrollHeight
 }
 
+window.addEventListener("orientationchange", () => {
+    chatOutput.scrollTop = chatOutput.scrollHeight
+});
+
 chatInputForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -145,6 +151,12 @@ chatInputIconEmergency.addEventListener("click", (event) => {
     });
 
     chatOutput.replaceChildren();
+});
+
+chatInputDisclaimerIconDismiss.addEventListener("click", () => {
+    if (chatInputDisclaimer.style.display !== "none") {
+        chatInputDisclaimer.style.display = "none";
+    }
 });
 
 socket.on("connect", () => {

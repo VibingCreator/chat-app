@@ -92,5 +92,5 @@ io.on("connection", (socket) => {
 });
 
 httpServer.listen(port, () => {
-    console.log(`http://127.0.0.1:${port}`);
+    console.log(`http://*:${port}`);
 });
