@@ -115,17 +115,19 @@ window.addEventListener("orientationchange", () => {
 chatInputForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    if (!chatInputData.value) return;
+    const input = chatInputData.value.trim();
+
+    if (!input) return;
 
     createSenderMessage({
-        data: chatInputData.value,
+        data: input,
         timestamp: new Date().toLocaleString("en-US", { hour: "numeric", minute: "numeric", hour12: true })
     });
 
     socket.emit("chatMessage", {
         type: "message",
         sender: socket.id,
-        data: chatInputData.value
+        data: input
     });
 
     chatInputForm.reset();
